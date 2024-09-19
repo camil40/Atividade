@@ -5,24 +5,21 @@ from django.contrib.auth.models import User
 
 
 class Category(models.Model):
-    category = models.CharField(max_length=100)
+    categoria = models.CharField(max_length=100)
 
 class Recipe(models.Model):
-    title = models.CharField(max_length=255)
-    description = models.TextField(blank=True, null=True)
-    ingredients = models.TextField(blank=True, null=True)
-    mododepreparo = models.TextField(blank=True, null=True)
-    tempodepreparo = models.TimeField()
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now_add=True)
-    privacity = models.BooleanField(default=True)
-    
+    titulo = models.CharField(max_length=255)
+    descricao = models.TextField(blank=True, null=True)
+    ingredientes = models.TextField(blank=True, null=False)
+    mododepreparo = models.TextField(blank=True, null=False)
+    tempodepreparo = models.TimeField(blank=True, null=False)
+    categoria = models.ForeignKey(Category, default=True)
+    autor = models.ForeignKey(User, on_delete=models.CASCADE)
+    data_criacao = models.DateTimeField(auto_now_add=True)
+    privacidade = models.BooleanField(default=True)
 
-    
-    
 class Rating(models.Model):
     receita = models.ForeignKey(Recipe, on_delete=models.CASCADE)
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     nota = models.IntegerField(null=True)
-    coment = models.TextField(blank=True, null=True)
+    comentario = models.TextField(blank=True, null=True)
