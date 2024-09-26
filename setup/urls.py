@@ -19,4 +19,6 @@ from django.urls import path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include(router.urls)),
+    path('receitas/<int:pk>/',RecipeRetrieveView.as_view(), name="receitas=retrieve"),
 ]
